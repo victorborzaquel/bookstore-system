@@ -1,34 +1,37 @@
 package com.victor.bookstoresystem;
 
-import com.victor.bookstoresystem.entities.CashRegister;
-import com.victor.bookstoresystem.entities.Item;
+import com.victor.bookstoresystem.entities.StockItem;
 import com.victor.bookstoresystem.entities.products.Product;
-import com.victor.bookstoresystem.enums.Category;
-import com.victor.bookstoresystem.repositories.CashRegisterRepository;
+import com.victor.bookstoresystem.services.CashRegisterService;
 import com.victor.bookstoresystem.repositories.ItemRepository;
 import com.victor.bookstoresystem.utils.Initialize;
+import com.victor.bookstoresystem.vo.IdentityCard;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Date;
 
 public class BookstoreSystem {
     private static final CashRegister cashRegister = new CashRegister();
 
     public static void main(String[] args) {
-        CashRegisterRepository.addCash(cashRegister, 1000);
+        CashRegisterService.addCash(cashRegister, 1000);
 
         Initialize.products();
 
-        List<Item<Product>> all = ItemRepository.findAll();
-        List<Item<Product>> books = ItemRepository.findByCategory(Category.BOOK);
+//        List<Item<Product>> all = ItemRepository.findAll();
+//        List<Item<Product>> books = ItemRepository.findByCategory(Category.BOOK);
 
-        int quantity = ItemRepository.getQuantityByCategory(Category.BOOK);
+//        int quantity = ItemRepository.getQuantityByCategory(Category.BOOK);
 
-        ItemRepository.removeById(1);
+//        ItemRepository.removeById(1);
 
-        Item<Product> p2 = ItemRepository.findById(2);
+        ItemRepository itemRepository = new ItemRepository();
 
-        BigDecimal troco = cashRegister.sellProduct(p2, new BigDecimal("200"));
+        StockItem<Product> p = itemRepository.findById(1);
+
+        IdentityCard identityCard = new IdentityCard("Victor", "123456789", "123456789", new Date(2200, 6, 22));
+
+        BigDecimal troco = cashRegister.sellProduct(p, new BigDecimal("200"), identityCard);
 
         System.out.println(troco);
 //        System.out.println(books);

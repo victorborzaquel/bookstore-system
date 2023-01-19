@@ -1,6 +1,6 @@
 package com.victor.bookstoresystem.repositories;
 
-import com.victor.bookstoresystem.entities.Item;
+import com.victor.bookstoresystem.entities.StockItem;
 import com.victor.bookstoresystem.entities.products.Product;
 import com.victor.bookstoresystem.enums.Category;
 
@@ -9,80 +9,79 @@ import java.util.List;
 
 public class ItemRepository {
 
-    private static final List<Item<Product>> items = new LinkedList<>();
+    private final List<StockItem<Product>> stockItems = new LinkedList<>();
 
-    private ItemRepository() {}
 
-    public static List<Item<Product>> findAll() {
-        return items;
+    public List<StockItem<Product>> findAll() {
+        return stockItems;
     }
 
-    public static List<Item<Product>> findByCategory(Category category) {
-        return items.stream().filter(item -> item.getCategory() == category).toList();
+    public List<StockItem<Product>> findByCategory(Category category) {
+        return stockItems.stream().filter(item -> item.getCategory() == category).toList();
     }
 
-    public static Item<Product> findById(int id) {
-        return items.stream().filter(item -> item.getId() == id).findFirst()
+    public StockItem<Product> findById(int id) {
+        return stockItems.stream().filter(item -> item.getId() == id).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Item não encontrado"));
     }
 
-    public static void editProductById(int id, Product product) {
-        Item<Product> item = findById(id);
-        item.setProduct(product);
+    public void editProductById(int id, Product product) {
+        StockItem<Product> stockItem = findById(id);
+        stockItem.setProduct(product);
     }
 
-    public static void editProductCategoryById(int id, Category category) {
-        Item<Product> item = findById(id);
-        item.setCategory(category);
+    public void editProductCategoryById(int id, Category category) {
+        StockItem<Product> stockItem = findById(id);
+        stockItem.setCategory(category);
     }
 
-    public static Integer getQuantityByCategory(Category category) {
+    public Integer getQuantityByCategory(Category category) {
         return findByCategory(category).size();
     }
 
-    public static Integer getQuantity() {
-        return items.size();
+    public Integer getQuantity() {
+        return stockItems.size();
     }
 
-    public static void add(Item<Product> item) {
-        items.add(item);
+    public void add(StockItem<Product> stockItem) {
+        stockItems.add(stockItem);
     }
 
-    public static void addAll(List<Item<Product>> item) {
-        items.addAll(item);
+    public void addAll(List<StockItem<Product>> stockItem) {
+        stockItems.addAll(stockItem);
     }
 
-    public static void remove(Item<Product> item) {
-        items.remove(item);
+    public void remove(StockItem<Product> stockItem) {
+        stockItems.remove(stockItem);
     }
 
-    public static void removeById(int id) {
-        Item<Product> item = findById(id);
+    public void removeById(int id) {
+        StockItem<Product> stockItem = findById(id);
 
-        items.remove(item);
+        stockItems.remove(stockItem);
     }
 
-    public static void incrementProduct(Item<Product> item) {
-        item.setQuantity(item.getQuantity() + 1);
+    public void incrementProduct(StockItem<Product> stockItem) {
+        stockItem.setQuantity(stockItem.getQuantity() + 1);
     }
 
-    public static void incrementProduct(Item<Product> item, Integer quantity) {
-        item.setQuantity(item.getQuantity() + quantity);
+    public void incrementProduct(StockItem<Product> stockItem, Integer quantity) {
+        stockItem.setQuantity(stockItem.getQuantity() + quantity);
     }
 
-    public static void subtractProduct(Item<Product> item) {
-        if (item.getQuantity() <= 0) {
+    public void subtractProduct(StockItem<Product> stockItem) {
+        if (stockItem.getQuantity() <= 0) {
             throw new IllegalArgumentException("Quantidade de produtos insuficiente");
         }
 
-        item.setQuantity(item.getQuantity() - 1);
+        stockItem.setQuantity(stockItem.getQuantity() - 1);
     }
 
-    public static void subtractProduct(Item<Product> item, Integer quantity) {
-        if (item.getQuantity() - quantity < 0) {
+    public void subtractProduct(StockItem<Product> stockItem, Integer quantity) {
+        if (stockItem.getQuantity() - quantity < 0) {
             throw new IllegalArgumentException("Quantidade de produtos insuficiente");
         }
 
-        item.setQuantity(item.getQuantity() - quantity);
+        stockItem.setQuantity(stockItem.getQuantity() - quantity);
     }
 }

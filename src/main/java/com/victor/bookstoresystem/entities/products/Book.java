@@ -3,12 +3,14 @@ package com.victor.bookstoresystem.entities.products;
 import com.victor.bookstoresystem.enums.MovieAndBookGenere;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Setter
 @Getter
+@ToString
 public class Book extends Product {
     private List<MovieAndBookGenere> generes;
     private String writer;
@@ -20,6 +22,10 @@ public class Book extends Product {
 
     public Book(String name, BigDecimal price) {
         super(name, price);
+    }
+
+    public Book(String name, BigDecimal price, boolean plus18) {
+        super(name, price, plus18);
     }
 
     public Book(String name, BigDecimal price, List<MovieAndBookGenere> generes, String writer, String publisher) {

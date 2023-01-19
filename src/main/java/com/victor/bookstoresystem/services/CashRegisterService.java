@@ -1,13 +1,13 @@
-package com.victor.bookstoresystem.repositories;
+package com.victor.bookstoresystem.services;
 
-import com.victor.bookstoresystem.entities.CashRegister;
+import com.victor.bookstoresystem.CashRegister;
 import com.victor.bookstoresystem.entities.products.Product;
 
 import java.math.BigDecimal;
 
-public class CashRegisterRepository {
+public class CashRegisterService {
 
-    private CashRegisterRepository(){}
+    private CashRegisterService(){}
 
     public static void addCash(CashRegister cashRegister, Integer cash) {
         cashRegister.setCash(cashRegister.getCash().add(new BigDecimal(cash.toString())));
@@ -15,7 +15,9 @@ public class CashRegisterRepository {
 
     public static void removeCash(CashRegister cashRegister, Integer cash) {
         if (cashRegister.getCash().doubleValue() - cash < 0) {
+
             throw new IllegalArgumentException("Dinheiro insuficiente");
+
         }
 
         cashRegister.setCash(cashRegister.getCash().min(new BigDecimal(cash.toString())));
