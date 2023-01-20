@@ -51,7 +51,6 @@ public class Main {
 
         cashRegister.sell();
 
-
         System.out.println(cashRegister.getCash());
         stock.getList().forEach(System.out::println);
     }
