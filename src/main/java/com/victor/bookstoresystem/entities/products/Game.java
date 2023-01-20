@@ -1,6 +1,5 @@
 package com.victor.bookstoresystem.entities.products;
 
-import com.victor.bookstoresystem.entities.Product;
 import com.victor.bookstoresystem.enums.Category;
 import com.victor.bookstoresystem.enums.generes.GameGenere;
 import lombok.Getter;

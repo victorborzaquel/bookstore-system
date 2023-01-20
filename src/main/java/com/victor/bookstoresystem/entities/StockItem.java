@@ -1,34 +1,35 @@
 package com.victor.bookstoresystem.entities;
 
+import com.victor.bookstoresystem.entities.products.Product;
 import com.victor.bookstoresystem.enums.IdType;
 import com.victor.bookstoresystem.utils.Id;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @ToString
 @AllArgsConstructor
-public class StockItem<T extends Product> {
+public class StockItem implements Item{
     private final Integer id = Id.generate(IdType.ITEM);
-    private Integer quantity;
-    private T product;
+    private int quantity;
+    private Product product;
 
-    public void increaseQuantity(int value) {
-        quantity += value;
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public void decreaseQuantity(int value) {
-        quantity -= value;
+    @Override
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void increaseQuantity() {
-        increaseQuantity(1);
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public void decreaseQuantity() {
-        decreaseQuantity(1);
+    @Override
+    public Product getProduct() {
+        return product;
     }
 }

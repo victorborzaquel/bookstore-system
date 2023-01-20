@@ -1,32 +1,33 @@
 package com.victor.bookstoresystem.entities;
 
+import com.victor.bookstoresystem.entities.products.Product;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @ToString
 @AllArgsConstructor
-public class OrderItem<T extends Product> {
-    private final Integer id;
-    private Integer quantity;
-    private T product;
+public class OrderItem implements Item{
+    private final int id;
+    private int quantity;
+    private final Product product;
 
-    public void increaseQuantity(int value) {
-        quantity += value;
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public void decreaseQuantity(int value) {
-        quantity -= value;
+    @Override
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void increaseQuantity() {
-        increaseQuantity(1);
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public void decreaseQuantity() {
-        decreaseQuantity(1);
+    @Override
+    public Product getProduct() {
+        return product;
     }
 }

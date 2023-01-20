@@ -1,33 +1,58 @@
 package com.victor.bookstoresystem;
 
 import com.victor.bookstoresystem.entities.CashRegister;
+import com.victor.bookstoresystem.entities.IdentityCard;
+import com.victor.bookstoresystem.entities.OrderItem;
 import com.victor.bookstoresystem.entities.StockItem;
-import com.victor.bookstoresystem.entities.Order;
-import com.victor.bookstoresystem.entities.Product;
+import com.victor.bookstoresystem.entities.products.Book;
+import com.victor.bookstoresystem.enums.Category;
 import com.victor.bookstoresystem.repositories.DiscountRepository;
-import com.victor.bookstoresystem.repositories.StockRepository;
-import com.victor.bookstoresystem.utils.Inicialize;
+import com.victor.bookstoresystem.repositories.ItemRepository;
+import com.victor.bookstoresystem.utils.Default;
 
 public class Main {
     public static void main(String[] args) {
+        ItemRepository<OrderItem> order = new ItemRepository<>();
+        IdentityCard identityCard = Default.identityCard();
+        ItemRepository<StockItem> stock = new ItemRepository<>();
         DiscountRepository discounts = new DiscountRepository();
-        StockRepository stock = new StockRepository();
-        StockRepository orderItems = new StockRepository();
-        Order order = new Order(orderItems);
+        CashRegister cashRegister = new CashRegister(0.0, identityCard, stock, order, discounts);
 
-        CashRegister cashRegister = new CashRegister();
+        order.addAll(Default.order());
+        stock.addAll(Default.stock());
+        discounts.addAll(Default.discounts());
 
-        Inicialize.products(stock);
-        Inicialize.discounts(discounts);
+        // Adicionar
+        stock.add(new StockItem(3, new Book("Livro", 12d, 16)));
 
-        StockItem<Product> p = stock.findById(1);
+        // Ver
+        System.out.println(stock.findById(2));
 
-        order.save(new StockItem<>(p.getCategory(), 1, p.getProduct()));
+        // Alterar
+        stock.findById(2).getProduct().setPrice(100d);
 
-        stock.findAll().forEach(System.out::println);
-        order.findAll().forEach(System.out::println);
+        // Remover
+        stock.removeById(2);
 
-//        OrderService.addItem();
+        // quantos itens de um tipo específico existem no estoque.
+        System.out.println(stock.findAllByCategory(Category.BOOK).size());
 
+        // listagem completa dos itens em estoque
+        stock.getList().forEach(System.out::println);
+
+        // listagem dos itens em estoque por categoria.
+        stock.findAllByCategory(Category.BOOK).forEach(System.out::println);
+
+        // operação de compra.
+        cashRegister.addProductToOrder(1, 8);
+        cashRegister.addProductToOrder(3, 1);
+
+        cashRegister.removeProductFromOrder(1, 1);
+
+        cashRegister.sell();
+
+
+        System.out.println(cashRegister.getCash());
+        stock.getList().forEach(System.out::println);
     }
 }

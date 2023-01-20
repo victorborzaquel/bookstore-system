@@ -1,4 +1,4 @@
-package com.victor.bookstoresystem.entities;
+package com.victor.bookstoresystem.entities.products;
 
 import com.victor.bookstoresystem.enums.Category;
 import com.victor.bookstoresystem.enums.IdType;

@@ -1,17 +1,10 @@
 package com.victor.bookstoresystem.entities;
 
+import com.victor.bookstoresystem.entities.products.Product;
+
 public interface Item {
-    private final Integer id;
-    private Integer quantity;
-    private T product;
-
-
-
-    void increaseQuantity(int value);
-
-    void decreaseQuantity(int value);
-
-    void increaseQuantity();
-
-    void decreaseQuantity();
+    int getId();
+    int getQuantity();
+    void setQuantity(int quantity);
+    Product getProduct();
 }

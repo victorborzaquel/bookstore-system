@@ -1,26 +1,34 @@
 package com.victor.bookstoresystem.repositories;
 
 import com.victor.bookstoresystem.entities.Discount;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
+@Getter
 public class DiscountRepository {
-    private final List<Discount> discounts = new LinkedList<>();
+    private final List<Discount> discounts = new ArrayList<>();
 
-    public List<Discount> findAll() {
-        return discounts;
-    }
-
-    public void save(Discount item) {
+    public void add(Discount item) {
         discounts.add(item);
     }
 
-    public void saveAll(List<Discount> discounts) {
-        this.discounts.addAll(discounts);
+    public void addAll(List<Discount> items) {
+        discounts.addAll(items);
     }
 
-    public void delete(Discount item) {
+    public void clear() {
+        discounts.clear();
+    }
+
+    public void remove(Discount item) {
         discounts.remove(item);
+    }
+
+    public void removeAll(List<Discount> items) {
+        discounts.removeAll(items);
     }
 }
