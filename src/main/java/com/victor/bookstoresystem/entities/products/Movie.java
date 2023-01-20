@@ -1,32 +1,27 @@
 package com.victor.bookstoresystem.entities.products;
 
-import com.victor.bookstoresystem.enums.MovieAndBookGenere;
+import com.victor.bookstoresystem.entities.Product;
+import com.victor.bookstoresystem.enums.Category;
+import com.victor.bookstoresystem.enums.generes.MovieGenere;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Setter
 @Getter
-@ToString
 public class Movie extends Product {
-    private List<MovieAndBookGenere> generes;
+    private List<MovieGenere> generes;
     private String studio;
     private List<String> directors;
     private List<String> producers;
 
-    public Movie(String name, BigDecimal price) {
-        super(name, price);
+    public Movie(String name, Double price, Integer ageGreaterThan) {
+        super(Category.MOVIE, name, price, ageGreaterThan);
     }
 
-    public Movie(String name, BigDecimal price, boolean plus18) {
-        super(name, price, plus18);
-    }
-
-    public Movie(String name, BigDecimal price, List<MovieAndBookGenere> generes, String studio, List<String> directors, List<String> producers) {
-        super(name, price);
+    public Movie(String name, Double price, Integer ageGreaterThan, List<MovieGenere> generes, String studio, List<String> directors, List<String> producers) {
+        super(Category.MOVIE, name, price, ageGreaterThan);
         this.generes = generes;
         this.studio = studio;
         this.directors = directors;

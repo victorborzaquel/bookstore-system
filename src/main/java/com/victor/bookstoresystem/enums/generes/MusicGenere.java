@@ -1,4 +1,4 @@
-package com.victor.bookstoresystem.enums;
+package com.victor.bookstoresystem.enums.generes;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

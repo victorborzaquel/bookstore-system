@@ -1,11 +1,11 @@
-package com.victor.bookstoresystem.enums;
+package com.victor.bookstoresystem.enums.generes;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum MovieAndBookGenere {
+public enum BookGenere {
     ACTION("Ação"),
     ADVENTURE("Aventura"),
     COMEDY("Comédia"),

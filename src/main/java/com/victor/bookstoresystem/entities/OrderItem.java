@@ -1,7 +1,5 @@
 package com.victor.bookstoresystem.entities;
 
-import com.victor.bookstoresystem.enums.IdType;
-import com.victor.bookstoresystem.utils.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,8 +9,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @AllArgsConstructor
-public class StockItem<T extends Product> {
-    private final Integer id = Id.generate(IdType.ITEM);
+public class OrderItem<T extends Product> {
+    private final Integer id;
     private Integer quantity;
     private T product;
 
