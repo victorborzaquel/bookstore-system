@@ -1,4 +1,4 @@
-package com.victor.bookstoresystem.entities;
+package com.victor.bookstoresystem.interfaces;
 
 import com.victor.bookstoresystem.entities.products.Product;
 

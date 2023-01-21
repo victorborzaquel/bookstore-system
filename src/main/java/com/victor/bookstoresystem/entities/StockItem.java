@@ -2,13 +2,14 @@ package com.victor.bookstoresystem.entities;
 
 import com.victor.bookstoresystem.entities.products.Product;
 import com.victor.bookstoresystem.enums.IdType;
+import com.victor.bookstoresystem.interfaces.Item;
 import com.victor.bookstoresystem.utils.Id;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
 @ToString
 @AllArgsConstructor
-public class StockItem implements Item{
+public class StockItem implements Item {
     private final Integer id = Id.generate(IdType.ITEM);
     private int quantity;
     private Product product;

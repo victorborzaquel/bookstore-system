@@ -1,12 +1,13 @@
 package com.victor.bookstoresystem.entities;
 
 import com.victor.bookstoresystem.entities.products.Product;
+import com.victor.bookstoresystem.interfaces.Item;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
 @ToString
 @AllArgsConstructor
-public class OrderItem implements Item{
+public class OrderItem implements Item {
     private final int id;
     private int quantity;
     private final Product product;

@@ -1,16 +1,17 @@
 package com.victor.bookstoresystem.repositories;
 
 import com.victor.bookstoresystem.entities.Discount;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.victor.bookstoresystem.interfaces.FindDiscount;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@Getter
-public class DiscountRepository {
+public class DiscountRepository implements FindDiscount {
     private final List<Discount> discounts = new ArrayList<>();
+
+    public List<Discount> findAll() {
+        return discounts;
+    }
 
     public void add(Discount item) {
         discounts.add(item);
