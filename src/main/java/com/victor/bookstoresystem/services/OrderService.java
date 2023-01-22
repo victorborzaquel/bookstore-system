@@ -1,17 +1,20 @@
 package com.victor.bookstoresystem.services;
 
-import com.victor.bookstoresystem.entities.*;
+import com.victor.bookstoresystem.entities.Discount;
+import com.victor.bookstoresystem.entities.IdentityCard;
+import com.victor.bookstoresystem.entities.OrderItem;
+import com.victor.bookstoresystem.entities.StockItem;
 import com.victor.bookstoresystem.enums.Category;
 import com.victor.bookstoresystem.interfaces.FindDiscount;
 import com.victor.bookstoresystem.interfaces.FindItem;
-import com.victor.bookstoresystem.repositories.ItemRepository;
+import com.victor.bookstoresystem.repositories.OrderRepository;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @AllArgsConstructor
 public class OrderService {
-    private final ItemRepository<OrderItem> order;
+    private final OrderRepository order;
     private final IdentityCard identityCard;
 
     public void addProductToOrder(FindItem<StockItem> stock , int id, int quantity) {

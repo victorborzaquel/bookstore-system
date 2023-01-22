@@ -2,20 +2,20 @@ package com.victor.bookstoresystem;
 
 import com.victor.bookstoresystem.entities.CashRegister;
 import com.victor.bookstoresystem.entities.IdentityCard;
-import com.victor.bookstoresystem.entities.OrderItem;
 import com.victor.bookstoresystem.entities.StockItem;
 import com.victor.bookstoresystem.entities.products.Book;
 import com.victor.bookstoresystem.enums.Category;
 import com.victor.bookstoresystem.repositories.DiscountRepository;
-import com.victor.bookstoresystem.repositories.ItemRepository;
+import com.victor.bookstoresystem.repositories.OrderRepository;
+import com.victor.bookstoresystem.repositories.StockRepository;
 import com.victor.bookstoresystem.services.OrderService;
 import com.victor.bookstoresystem.utils.Default;
 
 public class Main {
     public static void main(String[] args) {
-        final ItemRepository<StockItem> stock = new ItemRepository<>();
+        final StockRepository stock = new StockRepository();
         final DiscountRepository discounts = new DiscountRepository();
-        final ItemRepository<OrderItem> orderReposirory = new ItemRepository<>();
+        final OrderRepository orderReposirory = new OrderRepository();
 
         final CashRegister cashRegister = new CashRegister(0.0, discounts);
 

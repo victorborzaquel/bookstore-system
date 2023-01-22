@@ -1,27 +1,27 @@
 package com.victor.bookstoresystem.repositories;
 
-import com.victor.bookstoresystem.interfaces.FindItem;
-import com.victor.bookstoresystem.interfaces.Item;
+import com.victor.bookstoresystem.entities.StockItem;
 import com.victor.bookstoresystem.enums.Category;
+import com.victor.bookstoresystem.interfaces.FindItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemRepository<T extends Item> implements FindItem<T> {
-    private final List<T> list = new ArrayList<>();
+public class StockRepository implements FindItem<StockItem> {
+    private final List<StockItem> list = new ArrayList<>();
 
-    public List<T> findAll() {
+    public List<StockItem> findAll() {
         return list;
     }
 
-    public T findById(int id) {
+    public StockItem findById(int id) {
         return list.stream()
                 .filter(item -> item.getId() == id)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Stock item not found"));
     }
 
-    public List<T> findAllByCategory(Category category) {
+    public List<StockItem> findAllByCategory(Category category) {
         return list.stream()
                 .filter(item -> item.getProduct().getCategory().equals(category))
                 .toList();
@@ -31,11 +31,11 @@ public class ItemRepository<T extends Item> implements FindItem<T> {
         remove(findById(id));
     }
 
-    public void add(T item) {
+    public void add(StockItem item) {
         list.add(item);
     }
 
-    public void addAll(List<T> items) {
+    public void addAll(List<StockItem> items) {
         list.addAll(items);
     }
 
@@ -43,11 +43,11 @@ public class ItemRepository<T extends Item> implements FindItem<T> {
         list.clear();
     }
 
-    public void remove(T item) {
+    public void remove(StockItem item) {
         list.remove(item);
     }
 
-    public void removeAll(List<T> items) {
+    public void removeAll(List<StockItem> items) {
         list.removeAll(items);
     }
 }
